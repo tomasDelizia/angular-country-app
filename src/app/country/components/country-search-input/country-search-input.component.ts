@@ -11,6 +11,6 @@ export class CountrySearchInputComponent {
 
   onSearch(query: string) {
     if (query == '') return;
-    this.query.emit(query);
+    this.query.emit(query.toLowerCase());
   }
 }
