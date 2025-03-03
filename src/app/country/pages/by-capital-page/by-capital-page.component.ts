@@ -26,10 +26,9 @@ export class ByCapitalPageComponent {
         this.countries.set(countries);
       },
       error: (error) => {
-        console.log({ error });
         this.isLoading.set(false);
         this.countries.set([]);
-        this.hasError.set(`No se econtró un país con la capital ${query}`);
+        this.hasError.set(error);
       },
     });
   }
