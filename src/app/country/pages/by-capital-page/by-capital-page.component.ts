@@ -20,9 +20,17 @@ export class ByCapitalPageComponent {
     if (this.isLoading()) return;
     this.isLoading.set(true);
     this.hasError.set(null);
-    this.countryService.searchByCapital(query).subscribe((response) => {
-      this.isLoading.set(false);
-      this.countries.set(response);
+    this.countryService.searchByCapital(query).subscribe({
+      next: (countries) => {
+        this.isLoading.set(false);
+        this.countries.set(countries);
+      },
+      error: (error) => {
+        console.log({ error });
+        this.isLoading.set(false);
+        this.countries.set([]);
+        this.hasError.set(`No se econtró un país con la capital ${query}`);
+      },
     });
   }
 }
