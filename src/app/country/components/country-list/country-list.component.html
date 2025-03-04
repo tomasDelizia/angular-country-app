@@ -35,6 +35,26 @@
         </td>
       </tr>
       }
+      <!-- Mostrar mensaje de error -->
+      @if (errorMessage() && !isLoading()) {
+      <tr>
+        <td colspan="8" class="text-center">
+          {{ errorMessage() }}
+        </td>
+      </tr>
+      }
+      <!-- No tiene mucho sentido mostar este mensaje ya que la API da error 404 cuando no encuentra países -->
+      <!--@if (countries().length == 0 && !isLoading()) {
+      <tr>
+        <td colspan="8" class="text-center">No se encontraron resultados</td>
+      </tr>
+    } -->
+      <!-- Indicador de Carga-->
+      @if (isLoading()) {
+      <tr>
+        <td colspan="8" class="text-center">Buscando países</td>
+      </tr>
+      }
     </tbody>
   </table>
 </section>
