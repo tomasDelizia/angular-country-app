@@ -1,0 +1,56 @@
+<section class="mx-8">
+  <div class="hero-content flex-col lg:flex-row">
+    <h1 class="text-5xl font-bold">{{ country().name }}</h1>
+    <img [src]="country().flagSvg" [alt]="country().name" class="w-24" />
+  </div>
+  <div class="flex w-full">
+    <!-- Nombre oficial -->
+    <div class="card bg-base-300 rounded-box grid grow place-items-center">
+      <h1 class="text-xl">Nombre oficial</h1>
+      <h1 class="text-3xl font-bold">{{ country().officialName }}</h1>
+    </div>
+    <div class="divider divider-horizontal"></div>
+    <!-- Capital -->
+    <div class="card bg-base-300 rounded-box grid grow place-items-center">
+      <h1 class="text-xl">Capital</h1>
+      <h1 class="text-3xl font-bold">{{ country().capital }}</h1>
+    </div>
+    <div class="divider divider-horizontal"></div>
+    <!-- Población -->
+    <div class="card bg-base-300 rounded-box grid grow place-items-center">
+      <h1 class="text-xl">Población</h1>
+      <h1 class="text-3xl font-bold">{{ country().population | number }}</h1>
+    </div>
+    <div class="divider divider-horizontal"></div>
+    <!-- Idiomas -->
+    <div class="card bg-base-300 rounded-box grid grow place-items-center">
+      <h1 class="text-xl">Idiomas</h1>
+      <ul class="list text-2xl">
+        @for(language of country().languages; track language) {
+        <li class="list-row">{{ language }}</li>
+        }
+      </ul>
+    </div>
+    <div class="divider divider-horizontal"></div>
+    <!-- Emblema -->
+    <div class="card bg-base-300 rounded-box grid grow place-items-center">
+      <h1 class="text-xl">Emblema</h1>
+      <img
+        [src]="country().coatOfArmsSvg"
+        [alt]="country().name"
+        class="h-24"
+      />
+    </div>
+  </div>
+  <!-- Mapa -->
+  <div class="divider"></div>
+  <div class="card bg-base-300 rounded-box p-4 flex w-fit">
+    <h1 class="text-xl pb-2">Mapa</h1>
+    <google-map
+      [center]="{ lat: country().latlng[0], lng: country().latlng[1] }"
+      [zoom]="4"
+      [options]="{ draggable: false, disableDefaultUI: true }"
+    />
+  </div>
+  <div class="m-4"></div>
+</section>

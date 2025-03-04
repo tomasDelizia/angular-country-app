@@ -1,4 +1,7 @@
-@if(countryResource.error()) {
+@if(countryResource.error() && !countryResource.isLoading()) {
 <country-error-message [errorMessage]="countryResource.error()" />
+} @if(countryResource.isLoading()) {
+<country-loading-indicator />
+} @if(countryResource.hasValue()) {
+<country-information [country]="countryResource.value()" />
 }
-<h3>Nombre: {{ countryResource.value()?.name }}</h3>
