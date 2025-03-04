@@ -3,10 +3,11 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { Country } from '../../interfaces/country.interface';
 import { CountryService } from '../../services/country.service';
+import { ErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 
 @Component({
   selector: 'app-country-page',
-  imports: [],
+  imports: [ErrorMessageComponent],
   templateUrl: './country-page.component.html',
 })
 export default class CountryPageComponent {
