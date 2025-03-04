@@ -1,5 +1,6 @@
 import { Country } from '../interfaces/country.interface';
 import { RESTCountry } from '../interfaces/rest-countries.interfaces';
+import { map, firstValueFrom } from 'rxjs';
 export class CountryMapper {
   static mapRestCountryToCountry(restCountry: RESTCountry): Country {
     return {
@@ -7,8 +8,18 @@ export class CountryMapper {
       flag: restCountry.flag,
       flagSvg: restCountry.flags.svg,
       name: restCountry.translations['spa'].common ?? restCountry.name.common,
+      officialName: restCountry.name.official,
       capital: restCountry.capital.join(','),
       population: restCountry.population,
+      independent: restCountry.independent,
+      unMember: restCountry.unMember,
+      languages: Object.values(restCountry.languages),
+      latlng: restCountry.latlng,
+      area: restCountry.area,
+      gini: restCountry.gini,
+      timezones: restCountry.timezones,
+      continents: restCountry.continents,
+      coatOfArmsSvg: restCountry.coatOfArms.svg,
     };
   }
 

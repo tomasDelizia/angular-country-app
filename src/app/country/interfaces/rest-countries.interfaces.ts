@@ -14,9 +14,9 @@ export interface RESTCountry {
   altSpellings: string[];
   region: string;
   subregion: string;
-  languages: Languages;
+  languages: Record<string, string>;
   translations: { [key: string]: Translation };
-  latlng: number[];
+  latlng: [number, number];
   landlocked: boolean;
   borders: string[];
   area: number;
@@ -24,7 +24,7 @@ export interface RESTCountry {
   flag: string;
   maps: Maps;
   population: number;
-  gini: Gini;
+  gini: Record<string, number>;
   fifa: string;
   car: Car;
   timezones: string[];
@@ -75,18 +75,9 @@ export interface Flags {
   alt: string;
 }
 
-export interface Gini {
-  '2019': number;
-}
-
 export interface Idd {
   root: string;
   suffixes: string[];
-}
-
-export interface Languages {
-  grn: string;
-  spa: string;
 }
 
 export interface Maps {
