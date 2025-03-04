@@ -1,6 +1,5 @@
 import { Country } from '../interfaces/country.interface';
 import { RESTCountry } from '../interfaces/rest-countries.interfaces';
-import { map, firstValueFrom } from 'rxjs';
 export class CountryMapper {
   static mapRestCountryToCountry(restCountry: RESTCountry): Country {
     return {

@@ -42,15 +42,44 @@
       />
     </div>
   </div>
-  <!-- Mapa -->
+
   <div class="divider"></div>
-  <div class="card bg-base-300 rounded-box p-4 flex w-fit">
-    <h1 class="text-xl pb-2">Mapa</h1>
-    <google-map
-      [center]="{ lat: country().latlng[0], lng: country().latlng[1] }"
-      [zoom]="4"
-      [options]="{ draggable: false, disableDefaultUI: true }"
-    />
+  <div class="flex w-full">
+    <!-- Mapa -->
+    <div class="card bg-base-300 grid grow place-items-center p-4">
+      <h1 class="text-xl pb-2">Mapa</h1>
+      <google-map
+        [center]="{ lat: country().latlng[0], lng: country().latlng[1] }"
+        [zoom]="3.5"
+        [options]="{ draggable: false, disableDefaultUI: true }"
+      />
+    </div>
+    <div class="divider divider-horizontal"></div>
+    <!-- Gini -->
+    <div class="card bg-base-300 grid grow place-items-center p-4">
+      <h1 class="text-xl pb-2">Gini</h1>
+      <div
+        class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
+      >
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Año</th>
+              <th>Gini</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(key of giniEntries; track $index) {
+            <tr>
+              <td>{{ key[0] }}</td>
+              <td>{{ key[1] }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+
   <div class="m-4"></div>
 </section>
