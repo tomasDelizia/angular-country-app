@@ -39,4 +39,19 @@ export class CountryService {
         })
       );
   }
+
+  searchByAlphaCode(code: string): Observable<Country | undefined> {
+    return this.http
+      .get<RESTCountry[]>(`${environment.restCountriesApiUrl}/alpha/${code}`)
+      .pipe(
+        map(CountryMapper.mapRestCountriesToCountries),
+        map((countries) => countries.at(0)),
+        catchError((error) => {
+          console.log('Error searchByAlphaCode', error);
+          return throwError(
+            () => new Error(`No se encontró un país con el código ${code}`)
+          );
+        })
+      );
+  }
 }
