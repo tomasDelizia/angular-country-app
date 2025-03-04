@@ -3,25 +3,28 @@
     <h1 class="text-5xl font-bold">{{ country().name }}</h1>
     <img [src]="country().flagSvg" [alt]="country().name" class="w-24" />
   </div>
-  <div class="flex w-full">
+
+  <div class="stats bg-base-100 border border-base-300">
     <!-- Nombre oficial -->
-    <div class="card bg-base-300 rounded-box grid grow place-items-center">
-      <h1 class="text-xl">Nombre oficial</h1>
-      <h1 class="text-3xl font-bold">{{ country().officialName }}</h1>
+    <div class="stat">
+      <div class="stat-title">Nombre oficial</div>
+      <div class="stat-value">{{ country().officialName }}</div>
     </div>
-    <div class="divider divider-horizontal"></div>
     <!-- Capital -->
-    <div class="card bg-base-300 rounded-box grid grow place-items-center">
-      <h1 class="text-xl">Capital</h1>
-      <h1 class="text-3xl font-bold">{{ country().capital }}</h1>
+    <div class="stat">
+      <div class="stat-title">Capital</div>
+      <div class="stat-value">{{ country().capital }}</div>
     </div>
-    <div class="divider divider-horizontal"></div>
     <!-- Población -->
-    <div class="card bg-base-300 rounded-box grid grow place-items-center">
-      <h1 class="text-xl">Población</h1>
-      <h1 class="text-3xl font-bold">{{ country().population | number }}</h1>
+    <div class="stat">
+      <div class="stat-title">Población</div>
+      <div class="stat-value">{{ country().population | number }}</div>
     </div>
-    <div class="divider divider-horizontal"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="flex w-full">
     <!-- Idiomas -->
     <div class="card bg-base-300 rounded-box grid grow place-items-center">
       <h1 class="text-xl">Idiomas</h1>
@@ -39,19 +42,6 @@
         [src]="country().coatOfArmsSvg"
         [alt]="country().name"
         class="h-24"
-      />
-    </div>
-  </div>
-
-  <div class="divider"></div>
-  <div class="flex w-full">
-    <!-- Mapa -->
-    <div class="card bg-base-300 grid grow place-items-center p-4">
-      <h1 class="text-xl pb-2">Mapa</h1>
-      <google-map
-        [center]="{ lat: country().latlng[0], lng: country().latlng[1] }"
-        [zoom]="3.5"
-        [options]="{ draggable: false, disableDefaultUI: true }"
       />
     </div>
     <div class="divider divider-horizontal"></div>
@@ -78,6 +68,20 @@
           </tbody>
         </table>
       </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="stats bg-base-100 border border-base-300">
+    <!-- Mapa -->
+    <div class="stat">
+      <div class="stat-title">Mapa</div>
+      <google-map
+        [center]="{ lat: country().latlng[0], lng: country().latlng[1] }"
+        [zoom]="3.5"
+        [options]="{ draggable: false, disableDefaultUI: true }"
+      />
     </div>
   </div>
 
