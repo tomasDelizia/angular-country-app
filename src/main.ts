@@ -33,10 +33,6 @@ function loadGoogleMaps() {
     });
   `;
   document.head.appendChild(script);
-  console.log(
-    'Google maps loaded successfully with key',
-    environment.googleMapsApiKey
-  );
 }
 
 loadGoogleMaps();

@@ -28,7 +28,7 @@
     <!-- Idiomas -->
     <div class="card bg-base-300 rounded-box grid grow place-items-center">
       <h1 class="text-xl">Idiomas</h1>
-      <ul class="list text-2xl">
+      <ul class="list text-primary">
         @for(language of country().languages; track language) {
         <li class="list-row">{{ language }}</li>
         }
@@ -48,6 +48,9 @@
     <!-- Gini -->
     <div class="card bg-base-300 grid grow place-items-center p-4">
       <h1 class="text-xl pb-2">Gini</h1>
+      @if(giniEntries.length == 0) {
+      <h1>No hay información</h1>
+      } @else {
       <div
         class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
       >
@@ -68,6 +71,7 @@
           </tbody>
         </table>
       </div>
+      }
     </div>
   </div>
 

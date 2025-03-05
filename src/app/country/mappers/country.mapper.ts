@@ -17,7 +17,7 @@ export class CountryMapper {
         : [],
       latlng: restCountry.latlng,
       area: restCountry.area,
-      gini: restCountry.gini,
+      gini: restCountry.gini ?? {},
       timezones: restCountry.timezones,
       continents: restCountry.continents,
       coatOfArmsSvg: restCountry.coatOfArms.svg,
