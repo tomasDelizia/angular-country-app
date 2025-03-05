@@ -1,10 +1,10 @@
-import { Component, inject, resource, signal } from '@angular/core';
-import { CountrySearchInputComponent } from '../../components/top-menu/country-search-input/country-search-input.component';
+import { Component, inject, signal } from '@angular/core';
 import { CountryListComponent } from '../../components/country-list/country-list.component';
 import { Country } from '../../interfaces/country.interface';
 import { CountryService } from '../../services/country.service';
 import { of } from 'rxjs';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { CountrySearchInputComponent } from '../../components/country-search-input/country-search-input.component';
 
 @Component({
   selector: 'app-by-country-page',
