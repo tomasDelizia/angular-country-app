@@ -6,6 +6,7 @@
     autofocus
     (keyup.enter)="onSearch(txtSearch.value)"
     (keyup)="inputValue.set(txtSearch.value)"
+    [value]="inputValue()"
     #txtSearch
   />
   <button class="btn btn-primary" (click)="onSearch(txtSearch.value)">

@@ -1,4 +1,11 @@
-import { Component, effect, input, output, signal } from '@angular/core';
+import {
+  Component,
+  effect,
+  input,
+  linkedSignal,
+  output,
+  signal,
+} from '@angular/core';
 
 @Component({
   selector: 'country-search-input',
@@ -7,10 +14,12 @@ import { Component, effect, input, output, signal } from '@angular/core';
 })
 export class CountrySearchInputComponent {
   placeholder = input<string>('Buscar');
-  query = output<string>();
-  // Usamos una señal para almacenar el valor más actualizado del input
-  inputValue = signal<string>('');
   debounceTime = input<number>(300);
+  initialValue = input<string>('');
+  // Usamos una señal para almacenar el valor más actualizado del input
+  // Un linkedSignal es útil cuando necesitamos inicializarla con el valor de otra señal o variable
+  inputValue = linkedSignal<string>(() => this.initialValue());
+  query = output<string>();
 
   // onCleanup es un callback que se ejecuta cuando se destruye el componente o cuando se redispara el efecto
   debounceEffect = effect((onCleanup) => {
