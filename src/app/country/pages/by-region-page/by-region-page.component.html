@@ -1,6 +1,22 @@
-<country-search-input
+<!-- <country-search-input
   (query)="onSearch($event)"
   placeholder="Buscar por región"
-/>
+/> -->
 
-<country-list [countries]="[]" />
+<section class="row mt-2 flex-col">
+  @for (region of regions; track region) {
+  <button
+    class="btn btn-soft btn-primary mx-1 w-[100px]"
+    [class.btn-active]="selectedRegion() === region"
+    (click)="selectedRegion.set(region)"
+  >
+    {{ region }}
+  </button>
+  }
+</section>
+
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [isLoading]="countryResource.isLoading()"
+  [errorMessage]="countryResource.error()"
+/>

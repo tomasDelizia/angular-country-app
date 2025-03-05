@@ -5,6 +5,7 @@ import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { Country } from '../interfaces/country.interface';
 import { CountryMapper } from '../mappers/country.mapper';
 import { RESTCountry } from '../interfaces/rest-countries.interfaces';
+import { Region } from '../types/region.type';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class CountryService {
   // No es necesario que sea una señal
   private queryCapitalCache = new Map<string, Country[]>();
   private queryCountryCache = new Map<string, Country[]>();
+  private queryRegionCache = new Map<Region, Country[]>();
 
   searchByCapital(query: string): Observable<Country[]> {
     if (this.queryCapitalCache.has(query)) {
@@ -55,6 +57,28 @@ export class CountryService {
           console.log('Error searchByCountry', error);
           return throwError(
             () => new Error(`No se encontró un país con el nombre ${query}`)
+          );
+        })
+      );
+  }
+
+  searchByRegion(region: Region): Observable<Country[]> {
+    if (this.queryRegionCache.has(region)) {
+      console.log(`Existe la búsqueda "${region}" en la caché`);
+      return of(this.queryRegionCache.get(region) ?? []);
+    }
+    console.log(
+      `No existe la búsqueda "${region}" en la caché, consultando el servidor`
+    );
+    return this.http
+      .get<RESTCountry[]>(`${environment.restCountriesApiUrl}/region/${region}`)
+      .pipe(
+        map(CountryMapper.mapRestCountriesToCountries),
+        tap((countries) => this.queryRegionCache.set(region, countries)),
+        catchError((error) => {
+          console.log('Error searchByRegion', error);
+          return throwError(
+            () => new Error(`No se encontró un país de la región ${region}`)
           );
         })
       );
