@@ -31,6 +31,9 @@ export class CountryService {
       .pipe(
         map(CountryMapper.mapRestCountriesToCountries),
         tap((countries) => this.queryCapitalCache.set(query, countries)),
+        tap((countries) =>
+          countries.sort((c1, c2) => c1.name.localeCompare(c2.name))
+        ),
         catchError((error) => {
           console.log('Error searchByCapital', error);
           return throwError(
@@ -53,6 +56,9 @@ export class CountryService {
       .pipe(
         map(CountryMapper.mapRestCountriesToCountries),
         tap((countries) => this.queryCountryCache.set(query, countries)),
+        tap((countries) =>
+          countries.sort((c1, c2) => c1.name.localeCompare(c2.name))
+        ),
         catchError((error) => {
           console.log('Error searchByCountry', error);
           return throwError(
@@ -75,6 +81,9 @@ export class CountryService {
       .pipe(
         map(CountryMapper.mapRestCountriesToCountries),
         tap((countries) => this.queryRegionCache.set(region, countries)),
+        tap((countries) =>
+          countries.sort((c1, c2) => c1.name.localeCompare(c2.name))
+        ),
         catchError((error) => {
           console.log('Error searchByRegion', error);
           return throwError(
