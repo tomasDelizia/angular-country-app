@@ -6,7 +6,7 @@
 <section class="row mt-2 flex-col">
   @for (region of regions; track region) {
   <button
-    class="btn btn-soft btn-primary mx-1 w-[100px]"
+    class="btn btn-soft btn-primary m-1 w-[100px]"
     [class.btn-active]="selectedRegion() === region"
     (click)="selectedRegion.set(region)"
   >
